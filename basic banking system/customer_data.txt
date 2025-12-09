@@ -1,1 +1,1 @@
-{'Aarya:Pass'}
+{'Aarya':'Pass','Priyanshu':'Priya'}

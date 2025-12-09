@@ -3,7 +3,7 @@ class BankAccount:
         self.__balance=balance
     #getter for the balance
     def get_balance(self):
-        print(self.__balance)
+        print(f'CURRENT BALANCE:{self.__balance}')
     #setter for the balance
     def deposit(self,money):
         self.money=money
@@ -16,36 +16,27 @@ class BankAccount:
         print(f'withdrawed:{amount}\nremaining balance:{self.__balance}')    
 class Customer_data:
     def __init__(self,file_path,name,password):
-        self.file_path=file_path
-        self.name= name
+        self.file=open(file_path,"r")
+        self.data=eval(self.file.read())
         self.password=password
         self.n=0
         self.p=0
-        with open(file_path,'r') as data:
-            for i in data:
-                l=eval(i)
-                if self.name == l[0]:
-                    print('name is in database')
-                    self.n=1
-                else:
-                    print('name is not in database')
-        with open(file_path,'r') as data:
-            for i in data:
-                l=eval(i)        
-                if self.password==l[1]:
-                    print('the password is correct')
-                    self.p=1
-                else:
-                    print('incorrect password')
-        if self.n==1 and self.p==1:
-            print('successfully verified')
+        if name in self.data.keys():
+            self.n=1      
+            if self.password==self.data[name]:
+                self.p=1
+            else:
+                print('incorrect password\nRedo-do the login')
         else:
-            print('incorrect name/password')
+            print("User doesn't exists")
+        if self.n==1 and self.p==1:
+            print('successfully Verified')            
     def verification(self):
         if self.n==1 and self.p==1:
             return True
         else:
-            return False                    
+            return False
+                
 file_path='C:/Users/sajja/OneDrive/Desktop/python/basic banking system/customer_data.txt'
 name=input('enter name\n')                
 password=input('enter password\n')
@@ -66,6 +57,8 @@ if user.verification():
             case 3:
                 money=int(input('enter the amount you want to withdraw')) 
                 user_acc.remove(money)    
+            case 4:
+                print('thank you for using our services')
             case _:
                 print('invalid choice')   
 
