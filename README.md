@@ -23,22 +23,23 @@ A Command Line Interface (CLI) based banking application written in Python. This
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    git clone [https://github.com/sajjanaaru-ops/simple-banking-system.git](https://github.com/sajjanaaru-ops/simple-banking-system.git)
     ```
 
 2.  **Navigate to the directory:**
     ```bash
-    cd your-repo-name
+    cd simple-banking-system
     ```
 
 3.  **⚠️ Important Configuration (File Path):**
-    Before running the code, you must update the file path to match your local machine. 
+    Before running the code, you must update the file path to match your local machine.\
+    note: while programming this file, i tailored my code for my local device.You must change it so that you canrun the code on your laptop. 
     * Open `banking_sys.py`.
     * Locate the line: `file_path='C:/Users/sajja/OneDrive/Desktop/python/basic banking system/customer_data.txt'`
     * Change it to the path where your `customer_data.txt` is located. 
     * *Tip:* You can simply use `file_path = 'customer_data.txt'` if the text file is in the same folder as the python script.
 
-4.  **Create the Data File:**
+5.  **Create the Data File:**
     Create an empty file named `customer_data.txt` in the same folder and write an empty dictionary `{}` inside it to initialize the database.
 
 ## 🏃 Usage
