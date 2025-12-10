@@ -1,1 +1,1 @@
-{'Aarya': 'mouse12!', 'Aarya-Balance': 10000, 'Priyanshu': 'Priya', 'Priyanshu-Balance': 10000, 'Shashvat': 'Sassy', 'Shashvat-Balance': 10000, 'Akansh': 'Aku', 'Akansh-Balance': 10000}
+{'Aarya': 'mouse12!', 'Aarya-Balance': 25000, 'Priyanshu': 'Priya', 'Priyanshu-Balance': 10000, 'Shashvat': 'Sassy', 'Shashvat-Balance': 10000, 'Akansh': 'Aku', 'Akansh-Balance': 10000}
