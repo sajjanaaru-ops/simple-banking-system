@@ -5,7 +5,6 @@ with open('customer_data.txt','w') as f:
         pass
     else:
         f.write('{}')#this should initializes the database 
-        
 class BankAccount:
     def __init__(self,balance,file_path,name):
         self.__balance=balance
@@ -90,7 +89,7 @@ class Data_Mod:
         self.new_password=new_password
         if name in self.data.keys():
             if self.data[name]==password:
-                self.data[name]=self.new_password
+                self.data[name]=new_password
                 f=open(file_path,'w')
                 f.write(str(self.data))
                 f.close()
@@ -160,7 +159,7 @@ while check!=100:
             user=Data_Mod(file_path)
             while user.var:
                 name=input('enter the username\n')
-                password=input('enter the current password\n')
+                password=input('enter the password\n')
                 new_password=input('Enter the new password\n')
                 user.change_password(name,password,new_password)
             tm.sleep(2)
