@@ -39,8 +39,8 @@ A Command Line Interface (CLI) based banking application written in Python. This
     * Change it to the path where your `customer_data.txt` is located. 
     * *Tip:* You can simply use `file_path = 'customer_data.txt'` if the text file is in the same folder as the python script.
 
-5.  **Create the Data File:**
-    Create an empty file named `customer_data.txt` in the same folder and write an empty dictionary `{}` inside it to initialize the database.
+4.  **The code has been modified in a way to initialize the database of the customer_data.txt file.**
+5.  **Soon the repository will be updated with secured hashmaps and will use an .csv file instead of an .txt file for better secuirty**
 
 ## 🏃 Usage
 
