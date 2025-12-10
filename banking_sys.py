@@ -6,7 +6,7 @@ import random as r
 cowsay_attri=cs.char_names
 random_attri=r.choice(cowsay_attri)
 #for users who clone my repo. to initialize the database for them
-with open('customer_data.txt','w') as f:
+with open('customer_data.txt','r+') as f:
     if f:
         pass
     else:
