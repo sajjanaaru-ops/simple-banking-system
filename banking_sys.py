@@ -1,16 +1,29 @@
 import time as tm
 import json as js
 import os 
-import cowsay as cs
-import random as r
-cowsay_attri=cs.char_names
-random_attri=r.choice(cowsay_attri)
+import bcrypt as bc
+base_dir=os.path.dirname(os.path.abspath(__file__))
+file_path=os.path.join(base_dir,'customer_data.txt')
 #for users who clone my repo. to initialize the database for them
-with open('customer_data.txt','r+') as f:
+with open(file_path,'r+') as f:
     if f:
         pass
     else:
-        f.write('{}')#this should initializes the database 
+        f.write('{}')#this should initializes the database
+def data_encrypt(text):#hashing the data entered by the user.This is to protect the data.
+    bytes=text.encode('utf-8')
+    salt=bc.gensalt()# salt-random data
+    #hasing the text
+    hashed_text=bc.hashpw(bytes,salt)
+    return hashed_text.decode('utf-8')        
+
+def pass_verification(in_pass,hashed_pass):
+    in_pass_bytes=in_pass.encode('utf-8')
+    hashed_pass_bytes=hashed_pass.encode('utf-8')
+    if bc.checkpw(in_pass_bytes,hashed_pass_bytes):
+        return True
+    return False
+
 
 class BankAccount:
     def __init__(self,balance,file_path,name):
@@ -54,7 +67,7 @@ class Customer_data:
         self.var=True
         if name in self.data.keys():
             self.n=1      
-            if self.password==self.data[name]:
+            if pass_verification(self.password,self.data[name]):
                 self.p=1
             else:
                 print('incorrect password\nRedo-do the login')
@@ -80,7 +93,7 @@ class Data_Mod:
 
     def new_user(self,name,password,deposit):
         self.name=name
-        self.password=password
+        self.password=data_encrypt(password)
         self.deposit=deposit
         if name not in self.data.keys():
             self.data[self.name]=self.password
@@ -97,9 +110,9 @@ class Data_Mod:
     def change_password(self,name,password,new_password):
         self.name=name
         self.password=password
-        self.new_password=new_password
+        self.new_password=data_encrypt(new_password)
         if name in self.data.keys():
-            if self.data[name]==self.password:
+            if pass_verification(self.password,self.data[name]):
                 self.data[name]=self.new_password
                 f=open(file_path,'w')
                 y=js.dumps(self.data)
@@ -113,15 +126,12 @@ class Data_Mod:
             print("user doesn't exist")
             
 
-base_dir=os.path.dirname(os.path.abspath(__file__))
-file_path=os.path.join(base_dir,'customer_data.txt')# this removes the hardcoded file_path and makes the code run on any computer other than mine also.    
+# this removes the hardcoded file_path and makes the code run on any computer other than mine also.    
 
 check=0
 print("Welcome to the banking service system\nNOTE:THE ENTIRE SYSTEM IS CASE-SENSITIVE")
 while check!=100:
-    random_attri=r.choice(cowsay_attri)
-    text1=('1.lOGIN\n2.NEW USER REGISTRATION\n3.CHANGE PASSWORD\n4.EXIT')
-    getattr(cs,random_attri)(text1)
+    print('1.lOGIN\n2.NEW USER REGISTRATION\n3.CHANGE PASSWORD\n4.EXIT')
     check=int(input('Please Enter your choice\n'))
     match check:
         case 1:#login
@@ -133,10 +143,7 @@ while check!=100:
                 user_acc=BankAccount(bal,file_path,name)
                 choice=7
                 while choice!=4:
-                    random_attri=r.choice(cowsay_attri)
-                    text2=('1.CHECK BALANCE\n2.ADD MONEY \n3.WITHDRAW\n4.LOGOUT')
-                    getattr(cs,random_attri)(text2)
-
+                    print('1.CHECK BALANCE\n2.ADD MONEY \n3.WITHDRAW\n4.LOGOUT')
                     choice=int(input('enter the choice\n'))
                     match choice:
                         case 1:
@@ -184,8 +191,7 @@ while check!=100:
 
         case 4:#exit
             check=100
-            random_attri=r.choice(cowsay_attri)
-            getattr(cs,random_attri)('Thank You for using our services.\nHope you had good experience')
+            print('Thank You for using our services.\nHope you had good experience')
             tm.sleep(2)
                 
 
