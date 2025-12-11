@@ -5,11 +5,9 @@ import bcrypt as bc
 base_dir=os.path.dirname(os.path.abspath(__file__))
 file_path=os.path.join(base_dir,'customer_data.txt')
 #for users who clone my repo. to initialize the database for them
-with open(file_path,'r+') as f:
-    if f:
-        pass
-    else:
-        f.write('{}')#this should initializes the database
+if not os.path.exists(file_path) or os.stat(file_path).st_size == 0:
+    with open(file_path, 'w') as f:
+        js.dump({}, f)#this should initializes the database
 def data_encrypt(text):#hashing the data entered by the user.This is to protect the data.
     bytes=text.encode('utf-8')
     salt=bc.gensalt()# salt-random data
@@ -59,7 +57,8 @@ class BankAccount:
             f.close() 
             print(f'withdrawed:{amount}\nremaining balance:{self.__balance}')
         else:
-            print('you cant withdraw more than what you have in your account')    
+            print('you cant withdraw more than what you have in your account')
+            print(f'CURRENT BALANCE:{self.__balance}')    
 
 
 class Customer_data:
