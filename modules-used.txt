@@ -1,0 +1,5 @@
+the modules used for making this system are:
+1.time---> To slow down the response given from the system
+2.json---> To read and store the data from the text file
+3.os  ---> To get the file from the users computer
+4.bcrypt-> To encrypt and check the passwords from the file
