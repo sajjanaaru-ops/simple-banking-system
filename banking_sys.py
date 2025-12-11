@@ -48,13 +48,18 @@ class BankAccount:
     #to remove money from the account
     def remove(self,amount):
         self.amount=amount
-        self.__balance-=self.amount
-        self.data[f'{name}-Balance']=self.__balance
-        f=open(file_path,'w')
-        y=js.dumps(self.data)
-        f.write(y)
-        f.close() 
-        print(f'withdrawed:{amount}\nremaining balance:{self.__balance}')
+        temp=self.__balance
+        temp-=self.amount
+        if temp>=0:
+            self.__balance-=self.amount
+            self.data[f'{name}-Balance']=self.__balance
+            f=open(file_path,'w')
+            y=js.dumps(self.data)
+            f.write(y)
+            f.close() 
+            print(f'withdrawed:{amount}\nremaining balance:{self.__balance}')
+        else:
+            print('you cant withdraw more than what you have in your account')    
 
 
 class Customer_data:
