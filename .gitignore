@@ -1,0 +1,11 @@
+# Ignore the specific banking data file (anywhere in the project)
+customer_data.txt
+
+
+
+# Standard Python ignores (files created when you run code)
+__pycache__/
+*.pyc
+
+# Ignore VS Code settings (if you use VS Code)
+.vscode/
