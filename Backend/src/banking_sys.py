@@ -2,9 +2,12 @@ import time as tm
 import json as js
 import os 
 import bcrypt as bc
-base_dir=os.path.dirname(os.path.abspath(__file__))
-file_path=os.path.join(base_dir,'customer_data.txt')
+base_dir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+folder_path=os.path.join(base_dir,'Data')
+os.makedirs(folder_path, exist_ok=True)
+file_path=os.path.join(folder_path,'customer_data.txt')
 #for users who clone my repo. to initialize the database for them
+
 if not os.path.exists(file_path) or os.stat(file_path).st_size == 0:
     with open(file_path, 'w') as f:
         js.dump({}, f)#this should initializes the database

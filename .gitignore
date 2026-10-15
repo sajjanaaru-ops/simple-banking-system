@@ -1,6 +1,6 @@
 # Ignore the specific banking data file (anywhere in the project)
 customer_data.txt
-
+Data
 
 
 # Standard Python ignores (files created when you run code)
